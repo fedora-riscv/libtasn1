@@ -1,4 +1,4 @@
-Summary:	This is the ASN.1 library used in GNUTLS.                                                                                             
+Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	0.2.6
 Release:	1
