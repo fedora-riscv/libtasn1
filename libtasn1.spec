@@ -1,7 +1,8 @@
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	0.2.6
-Release:	1
+Release:	2
+
 License:	LGPL
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
@@ -53,6 +54,9 @@ rm -rf "$RPM_BUILD_ROOT"
 
 
 %changelog
+* Fri Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net>
+- rebuilt
+
 * Tue Nov 18 2003 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0:0.2.6-0.fdr.1
 - updated to 0.2.6
 
