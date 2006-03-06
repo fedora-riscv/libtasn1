@@ -25,6 +25,7 @@ Requires(postun):	automake pkgconfig
 Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
 
+
 %description
 This is the ASN.1 library used in GNUTLS.  More up to date information can
 be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
@@ -54,7 +55,7 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
 
 %check
-%__make check
+make check
 
 
 %clean
