@@ -4,7 +4,7 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	0.3.1
+Version:	0.3.2
 Release: 	%release_func 1
 
 License:	LGPL
@@ -26,6 +26,12 @@ Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
 
 
+%package tools
+Summary:	Some ASN.1 tools
+Group:		Applications/Text
+Requires:	%name = %version-%release
+
+
 %description
 This is the ASN.1 library used in GNUTLS.  More up to date information can
 be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
@@ -34,8 +40,15 @@ be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
 This is the ASN.1 library used in GNUTLS.  More up to date information can
 be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
 
-This packages contains files for development of applications which
-will use libtasn1.
+This package contains files for development of applications which will
+use libtasn1.
+
+
+%description tools
+This is the ASN.1 library used in GNUTLS.  More up to date information can
+be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
+
+This package contains tools using the libtasn library.
 
 
 %prep
@@ -80,6 +93,10 @@ test "$1" != 0 ||
 %doc AUTHORS COPYING* ChangeLog NEWS README THANKS
 %_libdir/*.so.*
 
+%files tools
+%defattr(-,root,root,-)
+%_bindir/asn1*
+%_mandir/man1/asn1*
 
 %files devel
 %defattr(-,root,root,-)
@@ -93,6 +110,10 @@ test "$1" != 0 ||
 
 
 %changelog
+* Sun Mar 26 2006 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0.3.2-1
+- updated to 0.3.2
+- added -tools subpackage
+
 * Wed Mar  8 2006 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0.3.1-1
 - updated to 0.3.1
 
