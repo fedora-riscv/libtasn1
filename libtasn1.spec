@@ -4,7 +4,7 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	0.3.5
+Version:	0.3.6
 Release: 	%release_func 1
 
 License:	LGPL
@@ -13,7 +13,7 @@ URL:		http://www.gnu.org/software/gnutls/download.html
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz
 Source1:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz.sig
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
-BuildRequires:	bison
+BuildRequires:	bison valgrind
 
 
 %package devel
@@ -110,6 +110,10 @@ test "$1" != 0 ||
 
 
 %changelog
+* Sun Nov  5 2006 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0.3.6-1
+- updated to 0.3.6
+- BR valgrind
+
 * Fri Sep 15 2006 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0.3.5-1
 - updated to 0.3.5
 
