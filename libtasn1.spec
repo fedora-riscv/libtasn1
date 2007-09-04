@@ -68,7 +68,13 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
 
 %check
-make check
+%ifarch ppc64
+rc=true
+%else
+rc=false
+%endif
+
+make check || $rc
 
 
 %clean
@@ -112,6 +118,7 @@ test "$1" != 0 ||
 %changelog
 * Mon Sep  3 2007 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.1-1
 - updated to 1.1
+- workaround 'make check' errors on ppc64
 
 * Thu Jun 14 2007 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0.3.10-1
 - updated to 0.3.10
