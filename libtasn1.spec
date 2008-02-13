@@ -4,7 +4,7 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	1.1
+Version:	1.3
 Release: 	%release_func 1
 
 License:	LGPL
@@ -12,16 +12,21 @@ Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz
 Source1:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz.sig
+Patch0:		libtasn1-1.3-pkgconfig.patch
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
-BuildRequires:	bison valgrind
+BuildRequires:	bison
+%ifarch %ix86 x86_64 ppc ppc64
+BuildRequires:	valgrind
+%endif
 
 
 %package devel
 Summary:	Files for development of applications which will use libtasn1
 Group:		Development/Libraries
 Requires:	%name = %version-%release
-Requires(pre):		automake pkgconfig
-Requires(postun):	automake pkgconfig
+Requires:	pkgconfig
+Requires(pre):		automake
+Requires(postun):	automake
 Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
 
@@ -53,7 +58,7 @@ This package contains tools using the libtasn library.
 
 %prep
 %setup -q
-
+%patch0 -p1 -b .pkgcfg
 
 %build
 %configure --disable-static
@@ -116,6 +121,13 @@ test "$1" != 0 ||
 
 
 %changelog
+* Wed Feb 13 2008 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.3-1
+- updated to 1.3 (#426488, #431334)
+- use wrapper around libtasn1-config which should make it multilib
+  safe (#342411); this implies an untagged 'Requires: pkgconfig' for
+  -devel now
+- conditionalized BR of valgrind (#401041)
+
 * Mon Sep  3 2007 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.1-1
 - updated to 1.1
 - workaround 'make check' errors on ppc64
