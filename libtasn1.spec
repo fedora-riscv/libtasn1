@@ -10,8 +10,8 @@ Release: 	%release_func 1
 License:	LGPL
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
-Source0:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz
-Source1:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz.sig
+Source0:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz
+Source1:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz.sig
 Patch0:		libtasn1-1.3-pkgconfig.patch
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
 BuildRequires:	bison
