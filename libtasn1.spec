@@ -1,5 +1,3 @@
-## $Id$
-
 %{!?release_func:%global release_func() %1%{?dist}}
 
 Summary:	This is the ASN.1 library used in GNUTLS

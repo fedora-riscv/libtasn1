@@ -1,5 +1,4 @@
 # Makefile for source rpm: libtasn1
-# $Id$
 NAME := libtasn1
 SPECFILE = $(firstword $(wildcard *.spec))
 
