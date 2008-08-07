@@ -3,9 +3,9 @@
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	1.4
-Release: 	%release_func 1
+Release: 	%release_func 2
 
-License:	LGPL
+License:	LGPLv2+
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
 Source0:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz
@@ -32,6 +32,7 @@ Requires(postun):	/sbin/install-info
 %package tools
 Summary:	Some ASN.1 tools
 Group:		Applications/Text
+License:	GPLv3+
 Requires:	%name = %version-%release
 
 
@@ -119,6 +120,9 @@ test "$1" != 0 ||
 
 
 %changelog
+* Thu Aug  7 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.4-2
+- fix license tag
+
 * Thu Jun  5 2008 Tomas Mraz <tmraz@redhat.com> - 1.4-1
 - updated to new upstream version
 
