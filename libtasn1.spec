@@ -2,10 +2,11 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	1.4
-Release: 	%release_func 2
+Version:	1.5
+Release: 	%release_func 1
 
-License:	LGPLv2+
+# The libtasn1 library is LGPLv2+, utilities are GPLv3+
+License: GPLv3+ and LGPLv2+
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
 Source0:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz
@@ -61,11 +62,14 @@ This package contains tools using the libtasn library.
 
 %build
 %configure --disable-static
+sed -i 's|^sys_lib_dlsearch_path_spec=.*|sys_lib_dlsearch_path_spec="/%{_lib} %{_libdir} "|g' libtool
+
 make %{?_smp_mflags}
 
 
 %install
 rm -rf "$RPM_BUILD_ROOT"
+
 make DESTDIR="$RPM_BUILD_ROOT" install
 
 rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
@@ -120,6 +124,11 @@ test "$1" != 0 ||
 
 
 %changelog
+* Tue Sep 30 2008 Tomas Mraz <tmraz@redhat.com> - 1.5-1
+- updated to new upstream version
+- fix license tag
+- fix spurious rpath in the tool binaries
+
 * Thu Aug  7 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.4-2
 - fix license tag
 
