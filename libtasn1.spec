@@ -2,7 +2,7 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	1.5
+Version:	1.7
 Release: 	%release_func 1
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
@@ -24,8 +24,6 @@ Summary:	Files for development of applications which will use libtasn1
 Group:		Development/Libraries
 Requires:	%name = %version-%release
 Requires:	pkgconfig
-Requires(pre):		automake
-Requires(postun):	automake
 Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
 
@@ -118,12 +116,14 @@ test "$1" != 0 ||
 %_libdir/*.so
 %_libdir/pkgconfig/*.pc
 %_includedir/*
-%_datadir/aclocal/libtasn1.m4
 %_infodir/*.info.*
 %_mandir/man3/*asn1*
 
 
 %changelog
+* Fri Nov 21 2008 Tomas Mraz <tmraz@redhat.com> - 1.7-1
+- updated to new upstream version
+
 * Tue Sep 30 2008 Tomas Mraz <tmraz@redhat.com> - 1.5-1
 - updated to new upstream version
 - fix license tag
