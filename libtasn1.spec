@@ -3,7 +3,7 @@
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	1.7
-Release: 	%release_func 1
+Release: 	%release_func 2
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License: GPLv3+ and LGPLv2+
@@ -13,7 +13,7 @@ Source0:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar
 Source1:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz.sig
 Patch0:		libtasn1-1.3-pkgconfig.patch
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
-BuildRequires:	bison
+BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
 %endif
@@ -121,6 +121,9 @@ test "$1" != 0 ||
 
 
 %changelog
+* Fri Dec 12 2008 Caolán McNamara <caolanm@redhat.com> - 1.7-2
+- rebuild to get provides pkgconfig(libtasn1)
+
 * Fri Nov 21 2008 Tomas Mraz <tmraz@redhat.com> - 1.7-1
 - updated to new upstream version
 
