@@ -1,2 +1,2 @@
-ftp://ftp.gnutls.org/pub/gnutls/libtasn1/
+http://ftp.gnu.org/pub/gnu/gnutls/
 libtasn1-(.*?)\.tar\.
