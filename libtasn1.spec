@@ -2,15 +2,15 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	1.7
-Release: 	%release_func 2
+Version:	1.8
+Release: 	%release_func 1
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
-License: GPLv3+ and LGPLv2+
+License: 	GPLv3+ and LGPLv2+
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
-Source0:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz
-Source1:	http://www.gnu.org/software/gnutls/releases/libtasn1/%name-%version.tar.gz.sig
+Source0:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz
+Source1:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz.sig
 Patch0:		libtasn1-1.3-pkgconfig.patch
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
 BuildRequires:	bison, pkgconfig
@@ -62,7 +62,8 @@ This package contains tools using the libtasn library.
 %configure --disable-static
 sed -i 's|^sys_lib_dlsearch_path_spec=.*|sys_lib_dlsearch_path_spec="/%{_lib} %{_libdir} "|g' libtool
 
-make %{?_smp_mflags}
+## SMP builds broke at 1.8
+make #{?_smp_mflags}
 
 
 %install
@@ -121,6 +122,11 @@ test "$1" != 0 ||
 
 
 %changelog
+* Tue Jan 27 2009 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.8-1
+- updated to 1.8
+- updated URLs
+- disabled SMP builds for now
+
 * Fri Dec 12 2008 Caolán McNamara <caolanm@redhat.com> - 1.7-2
 - rebuild to get provides pkgconfig(libtasn1)
 
