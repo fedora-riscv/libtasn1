@@ -2,17 +2,18 @@
 
 Summary:	This is the ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	1.3
+Version:	1.8
 Release: 	%release_func 1
 
-License:	LGPL
+# The libtasn1 library is LGPLv2+, utilities are GPLv3+
+License: 	GPLv3+ and LGPLv2+
 Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/gnutls/download.html
-Source0:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz
-Source1:	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%name-%version.tar.gz.sig
+Source0:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz
+Source1:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz.sig
 Patch0:		libtasn1-1.3-pkgconfig.patch
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
-BuildRequires:	bison
+BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
 %endif
@@ -23,8 +24,6 @@ Summary:	Files for development of applications which will use libtasn1
 Group:		Development/Libraries
 Requires:	%name = %version-%release
 Requires:	pkgconfig
-Requires(pre):		automake
-Requires(postun):	automake
 Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
 
@@ -32,6 +31,7 @@ Requires(postun):	/sbin/install-info
 %package tools
 Summary:	Some ASN.1 tools
 Group:		Applications/Text
+License:	GPLv3+
 Requires:	%name = %version-%release
 
 
@@ -60,7 +60,10 @@ This package contains tools using the libtasn library.
 
 %build
 %configure --disable-static
-make %{?_smp_mflags}
+sed -i 's|^sys_lib_dlsearch_path_spec=.*|sys_lib_dlsearch_path_spec="/%{_lib} %{_libdir} "|g' libtool
+
+## SMP builds broke at 1.8
+make #{?_smp_mflags}
 
 
 %install
@@ -113,12 +116,20 @@ test "$1" != 0 ||
 %_libdir/*.so
 %_libdir/pkgconfig/*.pc
 %_includedir/*
-%_datadir/aclocal/libtasn1.m4
 %_infodir/*.info.*
 %_mandir/man3/*asn1*
 
 
 %changelog
+* Tue Jan 27 2009 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.8-1
+- updated to 1.8
+- updated URLs
+- disabled SMP builds for now
+
+* Tue Sep 30 2008 Tomas Mraz <tmraz@redhat.com>
+- fix license tag
+- fix spurious rpath in the tool binaries
+
 * Wed Feb 13 2008 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 1.3-1
 - updated to 1.3 (#426488, #431334)
 - use wrapper around libtasn1-config which should make it multilib
