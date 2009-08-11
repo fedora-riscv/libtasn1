@@ -2,15 +2,15 @@
 
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	2.2
-Release: 	%release_func 2
+Version:	2.3
+Release: 	%release_func 1
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License: 	GPLv3+ and LGPLv2+
 Group:		System Environment/Libraries
-URL:		http://www.gnu.org/software/gnutls/download.html
-Source0:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz
-Source1:	http://ftp.gnu.org/pub/gnu/gnutls/%name-%version.tar.gz.sig
+URL:		http://www.gnu.org/software/libtasn1/
+Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
+Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 BuildRoot:	%_tmppath/%name-%version-%release-buildroot
 BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
@@ -89,12 +89,12 @@ rm -rf "$RPM_BUILD_ROOT"
 
 
 %post devel
-/sbin/install-info --info-dir=%_infodir %_infodir/%name.info || :
+test -f %_infodir/%name.info.gz && \
+	/sbin/install-info --info-dir=%_infodir %_infodir/%name.info || :
 
 %preun devel
-test "$1" != 0 ||
+test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 	/sbin/install-info --info-dir=%_infodir --delete %_infodir/%name.info || :
-
 
 %files
 %defattr(-,root,root,-)
@@ -117,6 +117,10 @@ test "$1" != 0 ||
 
 
 %changelog
+* Tue Aug 11 2009 Tomas Mraz <tmraz@redhat.com> - 2.3-1
+- updated to new upstream version
+- fix warnings when installed with --excludedocs (#515950)
+
 * Sat Jul 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
