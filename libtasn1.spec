@@ -3,7 +3,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	2.3
-Release:	%release_func 1
+Release:	%release_func 2
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -71,13 +71,7 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
 
 %check
-%ifarch ppc64
-rc=true
-%else
-rc=false
-%endif
-
-make check || $rc
+make check
 
 
 %clean
@@ -117,6 +111,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Jan 11 2010 Tomas Mraz <tmraz@redhat.com> - 2.3-2
+- no longer ignore make check result on ppc64
+
 * Tue Aug 11 2009 Tomas Mraz <tmraz@redhat.com> - 2.3-1
 - updated to new upstream version
 - fix warnings when installed with --excludedocs (#515950)
