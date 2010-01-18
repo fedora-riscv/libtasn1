@@ -2,8 +2,8 @@
 
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	2.3
-Release:	%release_func 2
+Version:	2.4
+Release:	%release_func 1
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -111,6 +111,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Jan 18 2010 Tomas Mraz <tmraz@redhat.com> - 2.4-1
+- new upstream release
+
 * Mon Jan 11 2010 Tomas Mraz <tmraz@redhat.com> - 2.3-2
 - no longer ignore make check result on ppc64
 
