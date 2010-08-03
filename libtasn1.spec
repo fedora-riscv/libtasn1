@@ -112,7 +112,7 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
-* Tue Aug  2 2010 Tomas Mraz <tmraz@redhat.com> - 2.7-1
+* Tue Aug 3 2010 Tomas Mraz <tmraz@redhat.com> - 2.7-1
 - new upstream release
 
 * Thu Jan 28 2010 Tomas Mraz <tmraz@redhat.com> - 2.4-2
