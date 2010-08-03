@@ -1,9 +1,7 @@
-%{!?release_func:%global release_func() %1%{?dist}}
-
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	2.4
-Release:	%release_func 2
+Version:	2.7
+Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -114,6 +112,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Tue Aug  2 2010 Tomas Mraz <tmraz@redhat.com> - 2.7-1
+- new upstream release
+
 * Thu Jan 28 2010 Tomas Mraz <tmraz@redhat.com> - 2.4-2
 - drop superfluous rpath
 
