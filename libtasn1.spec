@@ -15,6 +15,7 @@ BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
 %endif
+# Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20120913
 
 %package devel
