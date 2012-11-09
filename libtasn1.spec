@@ -15,7 +15,7 @@ BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
 %endif
-
+Provides: bundled(gnulib) = 20120913
 
 %package devel
 Summary:	Files for development of applications which will use libtasn1
