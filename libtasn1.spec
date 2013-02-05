@@ -1,6 +1,6 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	2.14
+Version:	3.2
 Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
@@ -59,14 +59,12 @@ This package contains tools using the libtasn library.
 %patch1 -p1 -b .rpath
 
 %build
-%configure --disable-static
+%configure --disable-static --disable-silent-rules
 
 make %{?_smp_mflags}
 
 
 %install
-rm -rf "$RPM_BUILD_ROOT"
-
 make DESTDIR="$RPM_BUILD_ROOT" install
 
 rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
@@ -74,10 +72,6 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
 %check
 make check
-
-
-%clean
-rm -rf "$RPM_BUILD_ROOT"
 
 
 %post   -p /sbin/ldconfig
@@ -95,8 +89,8 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 %files
 %defattr(-,root,root,-)
 %doc doc/TODO doc/*.pdf
-%doc AUTHORS COPYING* ChangeLog NEWS README THANKS
-%_libdir/*.so.*
+%doc AUTHORS COPYING* NEWS README THANKS
+%_libdir/*.so.6*
 
 %files tools
 %defattr(-,root,root,-)
@@ -113,6 +107,10 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Tue Feb  5 2013 Tomas Mraz <tmraz@redhat.com> - 3.2-1
+- new upstream release
+- SONAME bumped
+
 * Fri Nov  9 2012 Tomas Mraz <tmraz@redhat.com> - 2.14-1
 - new upstream release
 
