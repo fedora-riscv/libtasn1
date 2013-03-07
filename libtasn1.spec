@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	3.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -17,8 +17,6 @@ BuildRequires:	valgrind
 %endif
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20120913
-# temporary compat library for buildroots
-BuildRequires:	libtasn1
 
 %package devel
 Summary:	Files for development of applications which will use libtasn1
@@ -71,12 +69,6 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 
 rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
-# temporary compat library for buildroots
-install %{_libdir}/libtasn1.so.3.*.* $RPM_BUILD_ROOT/%{_libdir}
-pushd $RPM_BUILD_ROOT/%{_libdir}
-ln -s libtasn1.so.3.*.*  $RPM_BUILD_ROOT/%{_libdir}/libtasn1.so.3
-popd
-
 
 %check
 make check
@@ -99,8 +91,6 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 %doc doc/TODO doc/*.pdf
 %doc AUTHORS COPYING* NEWS README THANKS
 %_libdir/*.so.6*
-# temporary compat library for buildroots
-%_libdir/*.so.3*
 
 %files tools
 %defattr(-,root,root,-)
@@ -117,6 +107,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Thu Mar  7 2013 Tomas Mraz <tmraz@redhat.com> - 3.2-3
+- drop the temporary compat libtasn1
+
 * Tue Feb  5 2013 Tomas Mraz <tmraz@redhat.com> - 3.2-2
 - now with temporary compat libtasn1 taken from old build
 
