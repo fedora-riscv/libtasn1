@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	3.2
-Release:	3%{?dist}
+Version:	3.3
+Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -10,7 +10,6 @@ URL:		http://www.gnu.org/software/libtasn1/
 Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Patch1:		libtasn1-2.12-rpath.patch
-BuildRoot:	%_tmppath/%name-%version-%release-buildroot
 BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
@@ -35,22 +34,18 @@ Requires:	%name = %version-%release
 
 
 %description
-This is the ASN.1 library used in GNUTLS.  More up to date information can
-be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
+A library that provides Abstract Syntax Notation One (ASN.1, as specified
+by the X.680 ITU-T recommendation) parsing and structures management, and
+Distinguished Encoding Rules (DER, as per X.690) encoding and decoding functions.
 
 %description devel
-This is the ASN.1 library used in GNUTLS.  More up to date information can
-be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
-
 This package contains files for development of applications which will
 use libtasn1.
 
 
 %description tools
-This is the ASN.1 library used in GNUTLS.  More up to date information can
-be found at http://www.gnu.org/software/gnutls and http://www.gnutls.org
-
-This package contains tools using the libtasn library.
+This package contains simple tools that can decode and encode ASN.1
+data.
 
 
 %prep
@@ -107,6 +102,10 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Mar 25 2013 Tomáš Mráz <tmraz@redhat.com> - 3.3-1
+- new upstream release
+- improved description
+
 * Thu Mar  7 2013 Tomas Mraz <tmraz@redhat.com> - 3.2-3
 - drop the temporary compat libtasn1
 
