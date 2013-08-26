@@ -15,7 +15,7 @@ BuildRequires:	bison, pkgconfig
 BuildRequires:	valgrind
 %endif
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
-Provides: bundled(gnulib) = 20120913
+Provides: bundled(gnulib) = 20130324
 
 %package devel
 Summary:	Files for development of applications which will use libtasn1
