@@ -55,6 +55,8 @@ data.
 
 %build
 %configure --disable-static --disable-silent-rules
+# libtasn1 likes to regenerate docs
+touch doc/stamp_docs
 
 make %{?_smp_mflags}
 
