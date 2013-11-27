@@ -104,7 +104,7 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
-* Wed Nov 27 2013 Nikos <nmavrogi@redhat.com> - 3.4-1
+* Wed Nov 27 2013 Nikos Mavrogiannopoulos <nmav@redhat.com> - 3.4-1
 - new upstream release
 
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.3-2
