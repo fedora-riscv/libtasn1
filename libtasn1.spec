@@ -236,7 +236,7 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 * Sun May 22 2005 Jeremy Katz <katzj@redhat.com> - 0.2.6-3
 - rebuild on all arches
 
-* Fri Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net>
+* Thu Apr  7 2005 Michael Schwendt <mschwendt[AT]users.sf.net>
 - rebuilt
 
 * Tue Nov 18 2003 Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de> - 0:0.2.6-0.fdr.1
