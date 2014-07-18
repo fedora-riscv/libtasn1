@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	4.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -86,7 +86,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 %files
 %defattr(-,root,root,-)
 %doc doc/TODO doc/*.pdf
-%doc AUTHORS COPYING* NEWS README THANKS
+%{!?_licensedir:%global license %%doc}
+%license COPYING*
+%doc AUTHORS NEWS README THANKS
 %_libdir/*.so.6*
 
 %files tools
@@ -104,6 +106,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Fri Jul 18 2014 Tom Callaway <spot@fedoraproject.org> - 4.0-2
+- fix license handling
+
 * Mon Jun 30 2014 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.0-1
 - new upstream release
 
