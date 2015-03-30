@@ -1,0 +1,13 @@
+diff --git a/lib/parser_aux.h b/lib/parser_aux.h
+index 1f1aec2..7b2dfd4 100644
+--- a/lib/parser_aux.h
++++ b/lib/parser_aux.h
+@@ -52,7 +52,7 @@ void _asn1_delete_list (void);
+ 
+ void _asn1_delete_list_and_nodes (void);
+ 
+-#define LTOSTR_MAX_SIZE 20
++#define LTOSTR_MAX_SIZE 22
+ char *_asn1_ltostr (long v, char *str);
+ 
+ asn1_node _asn1_find_up (asn1_node node);

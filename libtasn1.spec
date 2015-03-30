@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	3.8
-Release:	2%{?dist}
+Release:	3%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -11,6 +11,7 @@ Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Patch1:		libtasn1-3.4-rpath.patch
 Patch2:		libtasn1-3.8-octet-string.patch
+Patch3:		libtasn1-3.8-ltostr.patch
 BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
@@ -54,6 +55,7 @@ data.
 
 %patch1 -p1 -b .rpath
 %patch2 -p1 -b .octet-string
+%patch3 -p1 -b .ltostr
 
 %build
 %configure --disable-static --disable-silent-rules
@@ -106,6 +108,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Mar 30 2015 Nikos Mavrogiannopoulos <nmav@redhat.com> - 3.8-3
+- backported fix for stack overflow in DER decoder
+
 * Thu Sep 04 2014 Nikos Mavrogiannopoulos <nmav@redhat.com> - 3.8-2
 - added bug fix for octet string decoding (#1138218)
 
