@@ -106,7 +106,7 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
-* Tue Mar 30 2015 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.4-1
+* Mon Mar 30 2015 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.4-1
 - new upstream release (#1206968)
 - fixes stack overflow in DER decoder
 
