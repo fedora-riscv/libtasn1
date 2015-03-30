@@ -54,7 +54,7 @@ data.
 %patch1 -p1 -b .rpath
 
 %build
-%configure --disable-static --disable-silent-rules
+%configure --disable-static --disable-silent-rules --disable-valgrind-tests
 # libtasn1 likes to regenerate docs
 touch doc/stamp_docs
 
