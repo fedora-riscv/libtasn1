@@ -9,6 +9,7 @@ Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/libtasn1/
 Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
+Source2:	gpgkey-1F42418905D8206AA754CCDC29EE58B996865171.gpg
 Patch1:		libtasn1-3.4-rpath.patch
 BuildRequires:	bison, pkgconfig
 %ifarch %ix86 x86_64 ppc ppc64
@@ -49,6 +50,7 @@ data.
 
 
 %prep
+gpgv2 --keyring %{SOURCE2} %{SOURCE1} %{SOURCE0}
 %setup -q
 
 %patch1 -p1 -b .rpath
