@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	4.7
-Release:	2%{?dist}
+Version:	4.8
+Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -106,6 +106,10 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Apr 11 2016 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.8-1
+- Update to 4.8
+- Resolves infinite loop recursion in the decode of certain BER structures.
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 4.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
