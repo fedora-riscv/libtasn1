@@ -1,6 +1,6 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	4.5
+Version:	4.8
 Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
@@ -106,6 +106,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Apr 11 2016 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.8-1
+- Update to 4.8
+
 * Thu Apr 30 2015 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.5-1
 - Update to 4.5 (#1217282)
 
