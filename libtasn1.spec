@@ -10,7 +10,8 @@ URL:		http://www.gnu.org/software/libtasn1/
 Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Patch1:		libtasn1-3.4-rpath.patch
-BuildRequires:	bison, pkgconfig
+Patch2:		libtasn1-4.9-no-werror.patch
+BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
 %ifarch %ix86 x86_64 ppc ppc64
 BuildRequires:	valgrind
@@ -53,6 +54,7 @@ data.
 %setup -q
 
 %patch1 -p1 -b .rpath
+%patch2 -p1 -b .no-werror
 
 %build
 autoreconf -v -f --install
