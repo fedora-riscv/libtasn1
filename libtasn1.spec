@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	4.9
-Release:	1%{?dist}
+Release:	2%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -12,10 +12,11 @@ Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Source2:	gpgkey-1F42418905D8206AA754CCDC29EE58B996865171.gpg
 Patch1:		libtasn1-3.4-rpath.patch
 Patch2:		libtasn1-4.9-no-werror.patch
+
 BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
-%ifarch %ix86 x86_64 ppc ppc64
-BuildRequires:	valgrind
+%ifarch %{ix86} x86_64 ppc %{power64} s390x %{arm} aarch64
+BuildRequires:	valgrind-devel
 %endif
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20130324
@@ -60,7 +61,7 @@ gpgv2 --keyring %{SOURCE2} %{SOURCE1} %{SOURCE0}
 
 %build
 autoreconf -v -f --install
-%configure --disable-static --disable-silent-rules --disable-valgrind-tests
+%configure --disable-static --disable-silent-rules
 # libtasn1 likes to regenerate docs
 touch doc/stamp_docs
 
@@ -90,28 +91,30 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 	/sbin/install-info --info-dir=%_infodir --delete %_infodir/%name.info || :
 
 %files
-%defattr(-,root,root,-)
-%doc doc/TODO doc/*.pdf
 %{!?_licensedir:%global license %%doc}
 %license COPYING*
 %doc AUTHORS NEWS README THANKS
-%_libdir/*.so.6*
+%{_libdir}/*.so.6*
 
 %files tools
-%defattr(-,root,root,-)
-%_bindir/asn1*
-%_mandir/man1/asn1*
+%{_bindir}/asn1*
+%{_mandir}/man1/asn1*
 
 %files devel
-%defattr(-,root,root,-)
-%_libdir/*.so
-%_libdir/pkgconfig/*.pc
-%_includedir/*
-%_infodir/*.info.*
-%_mandir/man3/*asn1*
+%doc doc/TODO doc/*.pdf
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
+%{_includedir}/*
+%{_infodir}/*.info.*
+%{_mandir}/man3/*asn1*
 
 
 %changelog
+* Mon Nov  7 2016 Peter Robinson <pbrobinson@fedoraproject.org> 4.9-2
+- Move development related docs to devel sub package
+- Cleanup spec and macros
+- Update valgrind ExclusiveArch
+
 * Fri Aug 26 2016 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.9-1
 - Update to 4.9 (#1360315)
 
