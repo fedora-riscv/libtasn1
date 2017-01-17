@@ -1,6 +1,6 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	4.9
+Version:	4.10
 Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
@@ -11,7 +11,7 @@ Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Source2:	gpgkey-1F42418905D8206AA754CCDC29EE58B996865171.gpg
 Patch1:		libtasn1-3.4-rpath.patch
-Patch2:		libtasn1-4.9-no-werror.patch
+
 BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
 %ifarch %ix86 x86_64 ppc ppc64
@@ -56,7 +56,6 @@ gpgv2 --keyring %{SOURCE2} %{SOURCE1} %{SOURCE0}
 %setup -q
 
 %patch1 -p1 -b .rpath
-%patch2 -p1 -b .no-werror
 
 %build
 autoreconf -v -f --install
@@ -112,6 +111,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Tue Jan 17 2017 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.10-1
+- Update to 4.10 (#1413792)
+
 * Fri Aug 26 2016 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.9-1
 - Update to 4.9 (#1360315)
 
