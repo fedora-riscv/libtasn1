@@ -1,28 +1,28 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	4.13
-Release:	3%{?dist}
+Release:	4%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
-Group:		System Environment/Libraries
 URL:		http://www.gnu.org/software/libtasn1/
 Source0:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz
 Source1:	http://ftp.gnu.org/gnu/libtasn1/%name-%version.tar.gz.sig
 Source2:	gpgkey-1F42418905D8206AA754CCDC29EE58B996865171.gpg
 Patch1:		libtasn1-3.4-rpath.patch
 
+BuildRequires:	gnupg2
+BuildRequires:	gcc
 BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
-%ifarch %{ix86} x86_64 ppc %{power64} s390x %{arm} aarch64
 BuildRequires:	valgrind-devel
-%endif
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20130324
 
 %package devel
 Summary:	Files for development of applications which will use libtasn1
-Group:		Development/Libraries
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+
 Requires:	%name = %version-%release
 Requires:	pkgconfig
 Requires(post):		/sbin/install-info
@@ -31,9 +31,8 @@ Requires(postun):	/sbin/install-info
 
 %package tools
 Summary:	Some ASN.1 tools
-Group:		Applications/Text
 License:	GPLv3+
-Requires:	%name = %version-%release
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 
 %description
@@ -89,7 +88,6 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 	/sbin/install-info --info-dir=%_infodir --delete %_infodir/%name.info || :
 
 %files
-%{!?_licensedir:%global license %%doc}
 %license COPYING*
 %doc AUTHORS NEWS README THANKS
 %{_libdir}/*.so.6*
@@ -108,6 +106,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Sat Jul 21 2018 Peter Robinson <pbrobinson@fedoraproject.org> 4.13-4
+- Add missing gcc/gnupg2 deps, spec cleanups
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 4.13-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
