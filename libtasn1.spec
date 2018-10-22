@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	4.13
-Release:	4%{?dist}
+Release:	5%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -24,6 +24,7 @@ Summary:	Files for development of applications which will use libtasn1
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 Requires:	%name = %version-%release
+Requires:	%{name}-tools = %{version}-%{release}
 Requires:	pkgconfig
 Requires(post):		/sbin/install-info
 Requires(postun):	/sbin/install-info
@@ -106,6 +107,10 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Oct 22 2018 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.13-5
+- libtasn1-devel requires the tools subpackage; it is necessary for
+  development.
+
 * Sat Jul 21 2018 Peter Robinson <pbrobinson@fedoraproject.org> 4.13-4
 - Add missing gcc/gnupg2 deps, spec cleanups
 
