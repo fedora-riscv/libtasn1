@@ -76,10 +76,6 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 make check
 
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
-
 %post devel
 test -f %_infodir/%name.info.gz && \
 	/sbin/install-info --info-dir=%_infodir %_infodir/%name.info || :
@@ -107,6 +103,9 @@ test "$1" = 0 -a -f %_infodir/%name.info.gz && \
 
 
 %changelog
+* Mon Oct 29 2018 James Antill <james.antill@redhat.com>
+- Remove ldconfig scriptlet, now done via. transfiletrigger in glibc.
+
 * Mon Oct 22 2018 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.13-5
 - libtasn1-devel requires the tools subpackage; it is necessary for
   development.
