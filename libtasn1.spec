@@ -26,8 +26,6 @@ Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	%name = %version-%release
 Requires:	%{name}-tools = %{version}-%{release}
 Requires:	pkgconfig
-Requires(post):		/sbin/install-info
-Requires(postun):	/sbin/install-info
 
 
 %package tools
@@ -74,15 +72,6 @@ rm -f $RPM_BUILD_ROOT{%_libdir/*.la,%_infodir/dir}
 
 %check
 make check
-
-
-%post devel
-test -f %_infodir/%name.info.gz && \
-	/sbin/install-info --info-dir=%_infodir %_infodir/%name.info || :
-
-%preun devel
-test "$1" = 0 -a -f %_infodir/%name.info.gz && \
-	/sbin/install-info --info-dir=%_infodir --delete %_infodir/%name.info || :
 
 %files
 %license COPYING*
