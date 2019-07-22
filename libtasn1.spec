@@ -92,7 +92,7 @@ make check
 
 
 %changelog
-* Wed Jul 22 2019 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.14-1
+* Mon Jul 22 2019 Nikos Mavrogiannopoulos <nmav@redhat.com> - 4.14-1
 - Update to 4.14 (#1621973)
 
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 4.13-7
