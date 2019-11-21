@@ -80,6 +80,7 @@ make check
 
 %files tools
 %{_bindir}/asn1*
+%{_bindir}/corpus2array
 %{_mandir}/man1/asn1*
 
 %files devel
