@@ -16,6 +16,7 @@ BuildRequires:	gcc
 BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
 BuildRequires:	valgrind-devel
+BuildRequires: make
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20130324
 
