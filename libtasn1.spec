@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
 Version:	4.16.0
-Release:	4%{?dist}
+Release:	5%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -16,7 +16,8 @@ BuildRequires:	gcc
 BuildRequires:	bison, pkgconfig, help2man
 BuildRequires:	autoconf, automake, libtool
 BuildRequires:	valgrind-devel
-BuildRequires: make
+BuildRequires:  make
+BuildRequires:  gtk-doc
 # Wildcard bundling exception https://fedorahosted.org/fpc/ticket/174
 Provides: bundled(gnulib) = 20130324
 
@@ -93,6 +94,9 @@ make check
 
 
 %changelog
+* Tue Apr 06 2021 Simo Sorce <simo@redhat.com> - 4.16.0-5
+- Add gtk-doc as BuildRequire
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 4.16.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
