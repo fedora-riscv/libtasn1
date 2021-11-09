@@ -87,7 +87,6 @@ make check
 %{_mandir}/man1/asn1*
 
 %files devel
-%doc doc/TODO doc/*.pdf
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
