@@ -1,7 +1,7 @@
 Summary:	The ASN.1 library used in GNUTLS
 Name:		libtasn1
-Version:	4.18.0
-Release:	2%{?dist}
+Version:	4.19.0
+Release:	1%{?dist}
 
 # The libtasn1 library is LGPLv2+, utilities are GPLv3+
 License:	GPLv3+ and LGPLv2+
@@ -95,6 +95,10 @@ make check
 
 
 %changelog
+* Fri Dec  2 2022 Simo Sorce <simo@redhat.com> - 4.19.0-1
+- Update to version 4.19.0
+- Fixes CVE-2021-46848 (#2140069)
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 4.18.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
